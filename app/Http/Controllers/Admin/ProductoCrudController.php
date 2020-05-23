@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\Datos_personaRequest;
+use App\Http\Requests\ProductoRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
 /**
- * Class Datos_personaCrudController
+ * Class ProductoCrudController
  * @package App\Http\Controllers\Admin
  * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
  */
-class Datos_personaCrudController extends CrudController
+class ProductoCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
@@ -21,9 +21,9 @@ class Datos_personaCrudController extends CrudController
 
     public function setup()
     {
-        $this->crud->setModel('App\Models\Datos_persona');
-        $this->crud->setRoute(config('backpack.base.route_prefix') . '/datos_persona');
-        $this->crud->setEntityNameStrings('Datos Personales', 'Datos Personales');
+        $this->crud->setModel('App\Models\Producto');
+        $this->crud->setRoute(config('backpack.base.route_prefix') . '/producto');
+        $this->crud->setEntityNameStrings('producto', 'productos');
     }
 
     protected function setupListOperation()
@@ -34,7 +34,7 @@ class Datos_personaCrudController extends CrudController
 
     protected function setupCreateOperation()
     {
-        $this->crud->setValidation(Datos_personaRequest::class);
+        $this->crud->setValidation(ProductoRequest::class);
 
         // TODO: remove setFromDb() and manually define Fields
         $this->crud->setFromDb();

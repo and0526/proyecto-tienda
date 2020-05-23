@@ -4,12 +4,10 @@ namespace App\Models;
 
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\softDeletes; //hacer uso de softDeletes
 
-class Datos_persona extends Model
+class Producto extends Model
 {
     use CrudTrait;
-    use softDeletes; //hacer eliminaciones no permanentes en la base de datos
 
     /*
     |--------------------------------------------------------------------------
@@ -17,7 +15,7 @@ class Datos_persona extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'datos_persona';
+    protected $table = 'producto';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];
