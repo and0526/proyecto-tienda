@@ -7,18 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 
-class Producto extends Model
+class Ticket extends Model
 {
     use CrudTrait;
     use softDeletes;
-
     /*
     |--------------------------------------------------------------------------
     | GLOBAL VARIABLES
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'producto';
+    protected $table = 'ticket';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 
-class Producto extends Model
+class Venta extends Model
 {
     use CrudTrait;
     use softDeletes;
@@ -18,7 +18,7 @@ class Producto extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'producto';
+    protected $table = 'venta';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];
