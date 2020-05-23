@@ -37,6 +37,14 @@ class Venta extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
+    public function Producto()
+    {
+        return $this->hasMany('App\Models\Producto');
+    }
+
+
+
+
 
     /*
     |--------------------------------------------------------------------------

@@ -37,6 +37,10 @@ class Producto extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
+    public function Venta()
+    {
+        return $this->belongsTo('App\Models\Venta');
+    }
 
     /*
     |--------------------------------------------------------------------------
