@@ -27,6 +27,9 @@ class VentaRequest extends FormRequest
     {
         return [
             // 'name' => 'required|min:5|max:255'
+            'producto_id' => 'required',
+            'tipo_pago' => 'required',
+            'cantidad_venta' => 'required|numeric|between:0,99'
         ];
     }
 

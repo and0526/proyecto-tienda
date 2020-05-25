@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTicketTable extends Migration
+class CreateProveedorTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreateTicketTable extends Migration
      */
     public function up()
     {
-        Schema::create('ticket', function (Blueprint $table) {
+        Schema::create('proveedor', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre_empresa');
-            $table->string('correo_cliente');
-            $table->unsignedBigInteger('venta_id')->nullable();
-            $table->foreign('venta_id')->references('id')->on('venta');
-            $table->softDeletes();
+            $table->string('nombre_provedor');
+            $table->string('telefono_provedor');
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ class CreateTicketTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ticket');
+        Schema::dropIfExists('proveedor');
     }
 }

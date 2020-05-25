@@ -27,6 +27,10 @@ class ProductoRequest extends FormRequest
     {
         return [
             // 'name' => 'required|min:5|max:255'
+            'nombre_producto' => 'required',
+            'precio_producto' => 'required|digits_between:1,5',
+            'stock' => 'required|numeric|between:0,99',
+            'imagen_producto'=> 'required'
         ];
     }
 

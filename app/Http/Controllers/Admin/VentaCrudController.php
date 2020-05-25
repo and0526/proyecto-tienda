@@ -60,21 +60,26 @@ class VentaCrudController extends CrudController
         );
 
         $this->crud->addField(
-            [   // Text
+            [ // select_from_array
                 'name' => 'tipo_pago',
                 'label' => "Tipo de pago",
-                'type' => 'text',
+                'type' => 'select_from_array',
+                'options' => ['Paypal', 'Efectivo', 'Tarjeta'],
+                'allows_null' => false,
+                // 'allows_multiple' => true, // OPTIONAL; needs you to cast this to array in your model;
             ]
         );
 
         $this->crud->addField(
-            [   // Text
+            [   // Number
                 'name' => 'cantidad_venta',
-                'label' => "Total de articulos",
-                'type' => 'text',
-                'attributes' => [
-                'readonly' => 'readonly',
-                ]
+                'label' => 'Cantidad',
+                'type' => 'number',
+                // optionals
+                'attributes' => ["step" => "1",  'min' => '1',
+                'max' => '99',], // allow decimals
+                'prefix' => "#",
+                //'suffix' => ".00",
             ]
         );
 

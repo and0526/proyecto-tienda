@@ -29,7 +29,48 @@ class ProductoCrudController extends CrudController
     protected function setupListOperation()
     {
         // TODO: remove setFromDb() and manually define Columns, maybe Filters
-        $this->crud->setFromDb();
+        //$this->crud->setFromDb();
+        $this->crud->addColumn(
+            [   // Text
+                'name' => 'nombre_producto',
+                'label' => "Nombre Producto ",
+                'type' => 'text',
+            ]
+        );
+
+        $this->crud->addColumn(
+            [   // Text
+                'name' => 'precio_producto',
+                'label' => "Precio Producto ",
+                'type' => 'text',
+            ]
+        );
+
+        $this->crud->addColumn(
+            [   // Number
+                'name' => 'stock',
+                'label' => 'Stock',
+                'type' => 'number',
+                // optionals
+            ]
+        );
+
+        $this->crud->addColumn(
+            [
+                'name' => 'imagen_producto', // The db column name
+                'label' => "Foto", // Table column heading
+                'type' => 'image',
+                 // 'prefix' => 'folder/subfolder/',
+                 // image from a different disk (like s3 bucket)
+                 // 'disk' => 'disk-name',
+                 // optional width/height if 25px is not ok with you
+                 'height' => '100px',
+                 'width' => '100px',
+             ]
+        );
+
+
+
     }
 
     protected function setupCreateOperation()
@@ -37,7 +78,47 @@ class ProductoCrudController extends CrudController
         $this->crud->setValidation(ProductoRequest::class);
 
         // TODO: remove setFromDb() and manually define Fields
-        $this->crud->setFromDb();
+        //$this->crud->setFromDb();
+        $this->crud->addField(
+            [   // Text
+                'name' => 'nombre_producto',
+                'label' => "Nombre Producto ",
+                'type' => 'text',
+            ]
+        );
+
+        $this->crud->addField(
+            [   // Text
+                'name' => 'precio_producto',
+                'label' => "Precio Producto ",
+                'type' => 'text',
+            ]
+        );
+
+        $this->crud->addField(
+            [   // Number
+                'name' => 'stock',
+                'label' => 'Stock',
+                'type' => 'number',
+                // optionals
+                'attributes' => ["step" => "1",  'min' => '1',
+                'max' => '99',], // allow decimals
+                'prefix' => "#",
+                //'suffix' => ".00",
+            ]
+        );
+
+        $this->crud->addField([
+            'label' => "Foto",
+            'name' => "imagen_producto",
+            'type' => 'image',
+            'upload' => true,
+            'crop' => true, // set to true to allow cropping, false to disable
+            'aspect_ratio' => 1, // ommit or set to 0 to allow any aspect ratio
+            // 'disk' => 's3_bucket', // in case you need to show images from a different disk
+            // 'prefix' => 'uploads/images/profile_pictures/' // in case your db value is only the file name (no path), you can use this to prepend your path to the image src (in HTML), before it's shown to the user;
+        ]);
+
     }
 
     protected function setupUpdateOperation()

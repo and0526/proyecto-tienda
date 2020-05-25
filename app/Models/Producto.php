@@ -42,6 +42,7 @@ class Producto extends Model
         return $this->belongsTo('App\Models\Venta');
     }
 
+
     /*
     |--------------------------------------------------------------------------
     | SCOPES
