@@ -15,9 +15,12 @@ class CreateProductoTable extends Migration
     {
         Schema::create('producto', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('proveedor_id')->nullable();
+            $table->foreign('proveedor_id')->references('id')->on('proveedor');
             $table->string('nombre_producto');
             $table->double('precio_producto');
             $table->integer('stock');
+            $table->string('tipo_producto');
             $table->binary('imagen_producto')->nullable();
             $table->timestamps();
             $table->softDeletes();

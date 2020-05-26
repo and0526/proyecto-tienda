@@ -16,9 +16,14 @@ class Ticket extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($usuario, $producto, $venta )
     {
-        //
+        $this->usuario = $usuario;
+        $this->producto = $producto;
+        $this->venta = $venta;
+
+
+
     }
 
     /**

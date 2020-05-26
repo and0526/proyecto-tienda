@@ -4,14 +4,10 @@ namespace App\Models;
 
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
-
-
-class Venta extends Model
+class Proveedor extends Model
 {
     use CrudTrait;
-    use softDeletes;
 
     /*
     |--------------------------------------------------------------------------
@@ -19,7 +15,7 @@ class Venta extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'venta';
+    protected $table = 'proveedor';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];
@@ -38,12 +34,6 @@ class Venta extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function Producto()
-    {
-        return $this->hasMany('App\Models\Producto');
-    }
-
-
 
     /*
     |--------------------------------------------------------------------------
