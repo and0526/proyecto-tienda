@@ -6,6 +6,12 @@ use App\Http\Requests\VentaRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Http\Request;
+
+use App\Http\Models\Producto;
+use App\Http\Models\venta;
+
 /**
  * Class VentaCrudController
  * @package App\Http\Controllers\Admin
@@ -29,7 +35,41 @@ class VentaCrudController extends CrudController
     protected function setupListOperation()
     {
         // TODO: remove setFromDb() and manually define Columns, maybe Filters
-        $this->crud->setFromDb();
+        //$this->crud->setFromDb();
+        $this->crud->addColumn(
+            [
+                'name' => 'Producto.nombre_producto',
+                'label' => 'Producto',
+            ]
+        );
+        $this->crud->addColumn(
+            [
+                'name' => 'User.name',
+                'label' => 'Usuario',
+            ]
+        );
+        $this->crud->addColumn(
+            [ // select_from_array
+                'name' => 'tipo_pago',
+                'label' => "Tipo de pago",
+                'type' => 'select_from_array',
+                'options' => ['Paypal', 'Efectivo', 'Tarjeta'],
+            ]
+        );
+        $this->crud->addColumn(
+            [   // Text
+                'name' => 'cantidad_venta',
+                'label' => 'Cantidad',
+                'type' => 'text',
+            ]
+        );
+        $this->crud->addColumn(
+            [   // Text
+                'name' => 'total_venta',
+                'label' => 'Costo total',
+                'type' => 'text',
+            ]
+        );
     }
 
     protected function setupCreateOperation()
@@ -55,7 +95,7 @@ class VentaCrudController extends CrudController
             [   // Hidden
                 'name' => 'user_id',
                 'type' => 'hidden',
-                'value' => 1, //se guardara el usuario actual
+                'value' => backpack_user()->id, //se guardara el usuario actual
             ]
         );
 
@@ -86,21 +126,13 @@ class VentaCrudController extends CrudController
         $this->crud->addField(
             [   // Text
                 'name' => 'total_venta',
-                'label' => "Costo Total ",
+                'label' => "Costo total ",
                 'type' => 'text',
                 'attributes' => [
                 'readonly' => 'readonly',
                 ]
             ]
         );
-
-
-
-
-
-
-
-
 
     }
 

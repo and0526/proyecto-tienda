@@ -28,9 +28,8 @@ class ProveedorRequest extends FormRequest
         return [
             // 'name' => 'required|min:5|max:255'
             'nombre_proveedor' => 'required',
-            'telefono_proveedor' => 'required|min:8|max:10',
+            'telefono_proveedor' => 'required|digits_between:8,10',
             'direccion_proveedor' => 'required',
-            'tipo_producto' => 'required'
         ];
     }
 

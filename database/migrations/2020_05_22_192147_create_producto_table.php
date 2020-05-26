@@ -21,7 +21,7 @@ class CreateProductoTable extends Migration
             $table->double('precio_producto');
             $table->integer('stock');
             $table->string('tipo_producto');
-            $table->binary('imagen_producto')->nullable();
+            $table->string('imagen_producto')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

@@ -40,11 +40,12 @@ class Venta extends Model
     */
     public function Producto()
     {
-        return $this->hasMany('App\Models\Producto');
+        return $this->belongsTo('App\Models\Producto');
     }
-
-
-
+    public function User()
+    {
+        return $this->belongsTo('App\User');
+    }
     /*
     |--------------------------------------------------------------------------
     | SCOPES

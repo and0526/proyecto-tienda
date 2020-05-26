@@ -29,7 +29,30 @@ class ProveedorCrudController extends CrudController
     protected function setupListOperation()
     {
         // TODO: remove setFromDb() and manually define Columns, maybe Filters
-        $this->crud->setFromDb();
+        //$this->crud->setFromDb();
+        $this->crud->addColumn(
+            [   // Text
+                'name' => 'nombre_proveedor',
+                'label' => "Nombre",
+                'type' => 'text',
+            ]
+        );
+
+        $this->crud->addColumn(
+            [   // Text
+                'name' => 'telefono_proveedor',
+                'label' => "Telefono",
+                'type' => 'text',
+            ]
+        );
+
+        $this->crud->addColumn(
+            [   // Text
+                'name' => 'direccion_proveedor',
+                'label' => "Direccion",
+                'type' => 'text',
+            ]
+        );
     }
 
     protected function setupCreateOperation()
@@ -41,7 +64,7 @@ class ProveedorCrudController extends CrudController
         $this->crud->addField(
             [   // Text
                 'name' => 'nombre_proveedor',
-                'label' => "Nombre Proveedor ",
+                'label' => "Nombre",
                 'type' => 'text',
             ]
         );
@@ -49,28 +72,20 @@ class ProveedorCrudController extends CrudController
         $this->crud->addField(
             [   // Text
                 'name' => 'telefono_proveedor',
-                'label' => "Telefono Proveedor ",
+                'label' => "Telefono",
                 'type' => 'text',
             ]
         );
 
         $this->crud->addField(
-            [   // Text
+            [   // Address
                 'name' => 'direccion_proveedor',
-                'label' => "Direccion Proveedor ",
-                'type' => 'text',
+                'label' => 'Direccion',
+                'type' => 'address_algolia',
+                // optional
+                'store_as_json' => false
             ]
         );
-
-        $this->crud->addField(
-            [   // Text
-                'name' => 'tipo_producto',
-                'label' => "Tipo de producto que surte ",
-                'type' => 'text',
-            ]
-        );
-
-
     }
 
     protected function setupUpdateOperation()
