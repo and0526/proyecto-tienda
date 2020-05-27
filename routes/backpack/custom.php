@@ -17,6 +17,7 @@ Route::group([//rutas que tendra acceso el Administrador y cliente
 ], function () { // custom admin routes
 
     Route::crud('venta', 'VentaCrudController');
+    Route::post('venta/getProductos', 'VentaCrudController@getProductos');
 
 }); // this should be the absolute last line of this file
 

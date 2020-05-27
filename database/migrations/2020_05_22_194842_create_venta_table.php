@@ -15,8 +15,6 @@ class CreateVentaTable extends Migration
     {
         Schema::create('venta', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('producto_id');
-            $table->foreign('producto_id')->references('id')->on('producto');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('tipo_pago');

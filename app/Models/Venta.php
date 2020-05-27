@@ -38,9 +38,9 @@ class Venta extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function Producto()
+    public function Productos()
     {
-        return $this->belongsTo('App\Models\Producto');
+        return $this->belongsToMany('App\Models\Producto', 'producto_venta', 'venta_id','producto_id');
     }
     public function User()
     {

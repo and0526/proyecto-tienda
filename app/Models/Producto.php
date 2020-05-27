@@ -37,9 +37,9 @@ class Producto extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function Venta()
+    public function Ventas()
     {
-        return $this->hasMany('App\Models\Venta');
+        return $this->belongsToMany('App\Models\Venta', 'producto_venta', 'producto_id','venta_id');
     }
     public function Proveedor()
     {

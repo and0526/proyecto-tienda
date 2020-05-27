@@ -9,8 +9,8 @@ use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
-use App\Http\Models\Producto;
-use App\Http\Models\venta;
+use App\Models\Producto;
+use App\Models\venta;
 
 /**
  * Class VentaCrudController
@@ -80,15 +80,14 @@ class VentaCrudController extends CrudController
         //$this->crud->setFromDb();
 
         $this->crud->addField(
-            [  // Select2
-                'label' => "Producto",
-                'type' => 'select2',
-                'name' => 'producto_id', // the db column for the foreign key
-                'entity' => 'Producto', // the method that defines the relationship in your Model
-                'attribute' => 'nombre_producto', // foreign key attribute that is shown to user
-
-                // optional
-             ]
+            [   // select2_from_array
+                'name'        => 'Productos',
+                'label'       => "Productos",
+                'type'        => 'productosParaVenta',
+                'options'     => Producto::all()->pluck('nombre_producto', 'id')->toArray(),
+                'allows_null' => false,
+                // 'allows_multiple' => true, // OPTIONAL; needs you to cast this to array in your model;
+            ]
         );
 
         $this->crud->addField(
@@ -139,5 +138,23 @@ class VentaCrudController extends CrudController
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
+    }
+
+    public function getProductos(Request $request)
+    {
+        $producto = $request->get('producto');
+        $cantidad = $request->get('cantidad');
+        if($producto && $cantidad){
+            $producto = Producto::find($producto);
+            if($producto){
+                if($producto->stock < $cantidad){
+                    return ['id' => $producto->id, 'nombre_producto' => $producto->nombre_producto, 'cantidad' => $producto->stock];
+                }else{
+                    return ['id' => $producto->id, 'nombre_producto' => $producto->nombre_producto, 'cantidad' => $cantidad, 'costoTotal' => $producto->precio_producto * $cantidad];
+                }
+            }
+        }
+
+        return[];
     }
 }
